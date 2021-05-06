@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
   def index
-    @people = PeopleApi.all_people
+    @people = PeopleApi.new(params["page"]).all_people
   end
 end
