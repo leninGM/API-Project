@@ -3,28 +3,12 @@ class PeopleApi
     @current_page = page
   end
 
-  def all_people
+  def call
     url = "https://api.salesloft.com/v2/people.json"
 
     response = RestClient.get(url, { :Authorization => "Bearer #{ENV["API_KEY"]}",
-                                     :params => { page: @current_page }})
+                                     :params => { page: @current_page, include_paging_counts: true }})
 
-    result = JSON.parse(response.to_str)
-
-    result = result["data"]
-
-    create_people_objs(result)
-  end
-
-  private
-
-  def create_people_objs(collection)
-    people = []
-
-    collection.each do |hash|
-      people << PeoplePresenter.new(hash)
-    end
-
-    people
+    JSON.parse(response.to_str)
   end
 end
