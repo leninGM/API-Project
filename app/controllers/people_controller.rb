@@ -1,5 +1,8 @@
 class PeopleController < ApplicationController
   def index
-    @people = PeopleApi.new(params["page"]).all_people
+    page = params["page"].to_i
+    page = page.zero? ? 1 : page
+
+    @people = PeopleApi.new(page).all_people
   end
 end
