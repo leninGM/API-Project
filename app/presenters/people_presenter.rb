@@ -1,7 +1,8 @@
 class PeoplePresenter
-  attr_accessor :email, :name, :title
+  attr_accessor :email, :name, :title, :id
 
   def initialize(opts)
+    @id = opts["id"]
     @email = opts["email_address"]
     @name = opts["display_name"]
     @title = opts["title"]

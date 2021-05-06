@@ -7,6 +7,10 @@ class PeoplePresenterTest < ActiveSupport::TestCase
     @person = PeoplePresenter.new(person_attributes)
   end
 
+  test "#id" do
+    assert_equal "1", @person.id
+  end
+
   test "#email" do
     assert_equal "barth@email.com", @person.email
   end

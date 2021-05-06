@@ -18,4 +18,12 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal "text/javascript", @response.media_type
   end
+
+  test "should get similar_emails" do
+    person = PeopleApi.new.all_people.first
+    get similar_emails_person_path(id: person.id), xhr: true
+
+    assert_response :success
+    assert_equal "text/javascript", @response.media_type
+  end
 end
