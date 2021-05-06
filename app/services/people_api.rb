@@ -1,5 +1,5 @@
 class PeopleApi
-  def initialize(page)
+  def initialize(page = 1)
     @current_page = page
   end
 
@@ -11,6 +11,20 @@ class PeopleApi
 
     result = JSON.parse(response.to_str)
 
-    result["data"]
+    result = result["data"]
+
+    create_people_objs(result)
+  end
+
+  private
+
+  def create_people_objs(collection)
+    people = []
+
+    collection.each do |hash|
+      people << PeoplePresenter.new(hash)
+    end
+
+    people
   end
 end

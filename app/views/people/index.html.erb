@@ -30,9 +30,9 @@
     <tbody>
       <% @people.each do |person| %>
         <tr>
-          <td><%= person["display_name"] %></td>
-          <td><%= person["email_address"]%></td>
-          <td><%= person["title"]%></td>
+          <td><%= person.name %></td>
+          <td><%= person.email %></td>
+          <td><%= person.title %></td>
         </tr>
       <% end %>
     </tbody>

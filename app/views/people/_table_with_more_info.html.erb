@@ -9,9 +9,9 @@
 <tbody>
   <% @people.each do |person| %>
     <tr>
-      <td><%= person["display_name"] %></td>
-      <td><%= person["email_address"] %></td>
-      <td><%= person["title"]%></td>
+      <td><%= person.name %></td>
+      <td><%= person.email %></td>
+      <td><%= person.title %></td>
       <td>
         <table>
           <tbody>
@@ -19,7 +19,7 @@
               <th scope="col">Character</th>
               <th scope="col">Count</th>
             </tr>
-            <% email_chars_frequency(person["email_address"]).each do |k,v| %>
+            <% person.email_chars_frequency.each do |k,v| %>
               <tr>
                 <td><%= k %></td>
                 <td><%= v %></td>
