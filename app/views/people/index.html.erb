@@ -1,5 +1,5 @@
 <div class="container">
-  <nav aria-label="Page navigation example" data-controller="pagination">
+  <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <li class="page-item">
         <%= link_to "previous", people_path(page: previous_page), class: "page-link" %>
@@ -18,6 +18,7 @@
       </li>
     </ul>
   </nav>
+  <%= link_to "Show Email Characters Frequency Count", email_chars_count_people_path(page: params["page"]), remote: true %>
   <table class="table">
     <thead>
       <tr>

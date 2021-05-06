@@ -1,0 +1,33 @@
+<thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Email Address</th>
+    <th scope="col">Job Title</th>
+    <th scope="col">Frequency Count</th>
+  </tr>
+</thead>
+<tbody>
+  <% @people.each do |person| %>
+    <tr>
+      <td><%= person["display_name"] %></td>
+      <td><%= person["email_address"] %></td>
+      <td><%= person["title"]%></td>
+      <td>
+        <table>
+          <tbody>
+            <tr>
+              <th scope="col">Character</th>
+              <th scope="col">Count</th>
+            </tr>
+            <% email_chars_frequency(person["email_address"]).each do |k,v| %>
+              <tr>
+                <td><%= k %></td>
+                <td><%= v %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
