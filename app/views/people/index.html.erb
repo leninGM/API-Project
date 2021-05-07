@@ -1,31 +1,35 @@
 <div class="py-4">
-  <%= render '/shared/pagination_nav' %>
+  <% if @people.empty? %>
+    <h2>There is not information returned by the API</h2>
+  <% else %>
+    <%= render '/shared/pagination_nav' %>
 
-  <%= link_to "Show Email Characters Frequency Count", email_chars_count_people_path(page: params["page"]), remote: true %>
+    <%= link_to "Show Email Characters Frequency Count", email_chars_count_people_path(page: params["page"]), remote: true %>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Email Address</th>
-        <th scope="col">Job Title</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @people.each do |person| %>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= person.name %></td>
-          <td><%= person.email %></td>
-          <td><%= person.title %></td>
-          <td><%= link_to "similar emails", similar_emails_person_path(person.id), remote: true, 'data-bs-toggle' => "modal", 'data-bs-target' => "#staticBackdrop", onclick: 'cleanModalBody(this)' %></td>
+          <th scope="col">Name</th>
+          <th scope="col">Email Address</th>
+          <th scope="col">Job Title</th>
+          <th scope="col"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @people.each do |person| %>
+          <tr>
+            <td><%= person.name %></td>
+            <td><%= person.email %></td>
+            <td><%= person.title %></td>
+            <td><%= link_to "similar emails", similar_emails_person_path(person.id), remote: true, 'data-bs-toggle' => "modal", 'data-bs-target' => "#staticBackdrop", onclick: 'cleanModalBody(this)' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <%= render '/shared/pagination_nav' %>
-</div>
+    <%= render '/shared/pagination_nav' %>
+  </div>
+<% end %>
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

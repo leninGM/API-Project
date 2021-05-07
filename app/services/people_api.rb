@@ -7,9 +7,13 @@ class PeopleApi
   def call
     url = "https://api.salesloft.com/v2/people.json"
 
-    response = RestClient.get(url, { :Authorization => "Bearer #{ENV["API_KEY"]}",
-                                     :params => { page: @current_page, include_paging_counts: true, per_page: @per_page }})
+    begin
+      response = RestClient.get(url, { :Authorization => "Bearer #{ENV["API_KEY"]}",
+                                       :params => { page: @current_page, include_paging_counts: true, per_page: @per_page }})
 
-    JSON.parse(response.to_str)
+      JSON.parse(response.to_str)
+    rescue => e
+      {}
+    end
   end
 end

@@ -8,6 +8,8 @@ class ListPeoplePerPage
     result = PeopleApi.new(page: @page, per_page: @per_page).call
     result = result["data"]
 
+    return [] if result.nil?
+
     create_people_objs(result)
   end
 
