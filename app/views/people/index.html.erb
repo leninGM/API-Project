@@ -25,6 +25,7 @@
         <th scope="col">Name</th>
         <th scope="col">Email Address</th>
         <th scope="col">Job Title</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -33,8 +34,35 @@
           <td><%= person.name %></td>
           <td><%= person.email %></td>
           <td><%= person.title %></td>
+          <td><%= link_to "similar emails", similar_emails_person_path(person.id), remote: true, 'data-bs-toggle' => "modal", 'data-bs-target' => "#staticBackdrop", onclick: 'cleanModalBody(this)' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        ...Searching
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cleanModalBody = (element) => {
+    let email = element.parentNode.parentElement.childNodes[3].innerHTML
+    document.getElementById('staticBackdropLabel').innerText = `Similar emails for ${email}`;
+    document.getElementById('modal-body').innerText = "... Searching";
+  }
+</script>

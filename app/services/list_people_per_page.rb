@@ -1,10 +1,11 @@
 class ListPeoplePerPage
-  def initialize(page = 1)
+  def initialize(page: 1, per_page: 25)
     @page = page
+    @per_page = per_page
   end
 
   def execute
-    result = PeopleApi.new(@page).call
+    result = PeopleApi.new(page: @page, per_page: @per_page).call
     result = result["data"]
 
     create_people_objs(result)
