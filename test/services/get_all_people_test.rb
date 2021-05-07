@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GetAllPeopleTest < ActiveSupport::TestCase
   setup do
-    stub_request(:get, "https://api.salesloft.com/v2/people.json?include_paging_counts=true&page=1")
+    stub_request(:get, "https://api.salesloft.com/v2/people.json?include_paging_counts=true&page=1&per_page=100")
       .to_return(status: 200, body: '{"metadata": { "paging": {"total_pages": 1} },"data":[{"id": 1, "display_name": "test name", "email_address": "email@test.com"}]}', headers: {})
   end
 
