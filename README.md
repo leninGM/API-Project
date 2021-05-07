@@ -22,7 +22,10 @@ Create DB
 Copy the .env.sample to .env and fill out the values
 ```cp .env.sample .env```
 
-Start the server
+Install dependencies
+```yarn install```
+
+And then start the server
 ```rails server```
 
 To run the test suit you just need to run in console
