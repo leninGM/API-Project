@@ -1,0 +1,23 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <%= link_to people_path(page: previous_page), class: "page-link" do %>
+          <span aria-hidden="true">&laquo;</span>
+        <% end %>
+      </li>
+      <li class="page-item">
+        <%= link_to page_option_1, people_path(page: page_option_1), class: "page-link" %>
+      </li>
+      <li class="page-item">
+        <%= link_to page_option_2, people_path(page: page_option_2), class: "page-link" %>
+      </li>
+      <li class="page-item">
+        <%= link_to page_option_3, people_path(page: page_option_3), class: "page-link" %>
+      </li>
+      <li class="page-item">
+        <%= link_to people_path(page: next_page), class: "page-link" do %>
+          <span aria-hidden="true">&raquo;</span>
+        <% end %>
+      </li>
+    </ul>
+  </nav>

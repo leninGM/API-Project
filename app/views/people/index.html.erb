@@ -1,31 +1,15 @@
-<div class="container">
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item">
-        <%= link_to "previous", people_path(page: previous_page), class: "page-link" %>
-      </li>
-      <li class="page-item">
-        <%= link_to page_option_1, people_path(page: page_option_1), class: "page-link" %>
-      </li>
-      <li class="page-item">
-        <%= link_to page_option_2, people_path(page: page_option_2), class: "page-link" %>
-      </li>
-      <li class="page-item">
-        <%= link_to page_option_3, people_path(page: page_option_3), class: "page-link" %>
-      </li>
-      <li class="page-item">
-        <%= link_to "Next", people_path(page: next_page), class: "page-link" %>
-      </li>
-    </ul>
-  </nav>
+<div class="py-4">
+  <%= render '/shared/pagination_nav' %>
+
   <%= link_to "Show Email Characters Frequency Count", email_chars_count_people_path(page: params["page"]), remote: true %>
+
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Email Address</th>
         <th scope="col">Job Title</th>
-        <th scope="col">Actions</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -39,6 +23,8 @@
       <% end %>
     </tbody>
   </table>
+
+  <%= render '/shared/pagination_nav' %>
 </div>
 
 <!-- Modal -->
@@ -60,7 +46,7 @@
 </div>
 
 <script>
-  const cleanModalBody = (element) => {
+  function cleanModalBody(element) {
     let email = element.parentNode.parentElement.childNodes[3].innerHTML
     document.getElementById('staticBackdropLabel').innerText = `Similar emails for ${email}`;
     document.getElementById('modal-body').innerText = "... Searching";
